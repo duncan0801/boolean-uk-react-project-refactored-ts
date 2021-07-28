@@ -1,0 +1,112 @@
+section {
+	background-color: #0077b6;
+	border-radius: 5px;
+	padding: 20px;
+}
+section h2 {
+	color: #caf0f8;
+	text-align: left;
+}
+.userSection button {
+    background-color: #0077b6;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+.name {
+    font-size: large;
+}
+.userSection button:hover {
+    background-color: rgb(3, 123, 187);
+}
+.userSection button:active {
+    background-color: #006ca7;
+}
+.userSection {
+	grid-area: userSection;
+	display: grid;
+	place-content: center;
+}
+.customerSummary {
+	grid-area: customerSummary;
+	color: #caf0f8;
+	text-align: left;
+}
+.quickTransfer {
+	grid-area: quickTransfer;
+}
+.accounts {
+	grid-area: accounts;
+}
+.wrapper {
+	padding: 20px;
+	display: grid;
+	grid-gap: 10px;
+	grid-template:
+		"userSection customerSummary" auto
+		"quickTransfer accounts" 100% /
+		200px 1fr;
+}
+.accountContainer h3 {
+	grid-area: title;
+    margin-bottom: 10px;
+    font-size: larger;
+}
+.accountContainer .logoContainer {
+	grid-area: logo;
+}
+.accountContainer .accountDetails {
+	grid-area: accountDetails;
+}
+.accountContainer .balanceContainer {
+	grid-area: balance;
+    font-size: 30px;
+    font-weight: lighter;
+}
+.accountContainer .actions {
+	grid-area: actions;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+.accountContainer {
+    margin: 10px;
+	padding: 20px;
+	background-color: #caf0f8;
+	border-radius: 10px;
+	color: #03045e;
+	display: grid;
+	grid-template: 
+        "title title title" auto
+        "logo accountDetails balance" 1fr
+        "actions actions actions"/
+        auto 1fr auto;
+	text-align: left;
+	grid-gap: 10px;
+}
+/* .accounts h3 {
+    color: ;
+} */
+
+.balanceContainer {
+	display: grid;
+	place-content: center;
+}
+.logoContainer {
+	overflow: hidden;
+	border-radius: 50%;
+	display: grid;
+	place-content: center;
+}
+.transferForm  {
+    margin-top: 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    
+    gap: 10px;
+}
+.lightWeight {
+    font-weight: lighter;
+    margin-right: 1em;
+}

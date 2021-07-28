@@ -1,0 +1,55 @@
+.transactionsWrapper {
+	background-color: #caf0f8;
+}
+.logoContainer {
+	grid-area: logoContainer;
+	border-radius: 50%;
+}
+.accountDetails {
+	grid-area: accountDetails;
+}
+.balanceContainer {
+	grid-area: balanceContainer;
+}
+.account {
+	display: grid;
+	grid-template-areas: "logoContainer accountDetails balanceContainer";
+}
+.transactionsTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 25px 0;
+	min-width: 400px;
+    text-align: left;
+}
+.transactionsTable thead tr {
+    background-color: #03045e;
+    color: #e2e2e2;
+    text-align: left;
+    font-weight: bold;
+}
+.transactionsTable th, .transactionsTable td {
+    padding: 5px;
+
+}
+.transactionsTable tbody tr {
+    border-bottom: 1px solid #03055e23;
+}
+.transactionsTable tbody tr:nth-of-type(even) {
+    background-color: #bddfe6;
+}
+.transactionsTable tbody tr:last-of-type {
+    border-bottom: 2px solid #03045e;
+}
+.searchForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+}
+/* .transactionsList li {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    text-align: left;
+} */

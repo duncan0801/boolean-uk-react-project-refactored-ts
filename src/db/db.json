@@ -1,0 +1,310 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Duncan",
+      "lastName": "Magill",
+      "customerNumber": "00000001",
+      "password": "password",
+      "lastLogin": "09-07-2021, 23:15:35",
+      "contacts": [
+        {
+          "name": "Nico Maracora",
+          "accountNumber": "0003",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Sergio Neaves",
+          "accountNumber": "0004",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Steven Rico",
+          "accountNumber": "0005",
+          "sortCode": "12-12-12"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Nico",
+      "lastName": "Maracora",
+      "customerNumber": "00000002",
+      "password": "password",
+      "lastLogin": "09-07-2021, 16:31:48",
+      "contacts": [
+        {
+          "name": "Duncan Magill",
+          "accountNumber": "0001",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Sergio Neaves",
+          "accountNumber": "0004",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Steven Rico",
+          "accountNumber": "0005",
+          "sortCode": "12-12-12"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "firstName": "Sergio",
+      "lastName": "Neaves",
+      "customerNumber": "00000003",
+      "password": "password",
+      "lastLogin": "09-07-2021, 16:38:19",
+      "contacts": [
+        {
+          "name": "Duncan Magill",
+          "accountNumber": "0001",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Steven Rico",
+          "accountNumber": "0005",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Nico Maracora",
+          "accountNumber": "0003",
+          "sortCode": "12-12-12"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "firstName": "steven",
+      "lastName": "rico",
+      "customerNumber": "00000004",
+      "password": "password",
+      "lastLogin": "09-07-2021, 14:08:06",
+      "contacts": [
+        {
+          "name": "Duncan Magill",
+          "accountNumber": "0001",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Nico Maracora",
+          "accountNumber": "0003",
+          "sortCode": "12-12-12"
+        },
+        {
+          "name": "Sergio Neaves",
+          "accountNumber": "0004",
+          "sortCode": "12-12-12"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "accNumber": "0001",
+      "sortCode": "12-12-12",
+      "accType": "current account",
+      "balance": -100,
+      "transactions": [
+        {
+          "vendorName": "LIDL",
+          "price": 1.5,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "Amazon",
+          "price": 10.75,
+          "category": "Online Shopping",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "O2",
+          "price": 10.75,
+          "category": "phone payment",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "Duncan Magill",
+          "price": 100,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Nico Maracora",
+          "price": 100,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Nico Maracora",
+          "price": 100,
+          "category": "payment",
+          "type": "outgoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Nico Maracora",
+          "price": 100,
+          "category": "payment",
+          "type": "outgoing",
+          "date": "09-07-2021"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "accNumber": "0002",
+      "sortCode": "12-12-12",
+      "accType": "current account",
+      "balance": 34.55,
+      "transactions": [
+        {
+          "vendorName": "SAINSBURYS",
+          "price": 1.5,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "Amazon",
+          "price": 10.75,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "nicolas maracora",
+          "price": 10.75,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "08-07-2021"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "accNumber": "0003",
+      "sortCode": "12-12-12",
+      "accType": "current account",
+      "balance": 870.56,
+      "transactions": [
+        {
+          "vendorName": "LIDL",
+          "price": 1.5,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "Amazon",
+          "price": 10.75,
+          "category": "Online Shopping",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "O2",
+          "price": 10.75,
+          "category": "phone payment",
+          "type": "outgoing",
+          "date": "08-07-2021"
+        },
+        {
+          "vendorName": "Duncan Magill",
+          "price": 100,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Nico Maracora",
+          "price": 100,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Nico Maracora",
+          "price": 100,
+          "category": "payment",
+          "type": "outgoing",
+          "date": "09-07-2021"
+        },
+        {
+          "vendorName": "Duncan Magill",
+          "price": 100,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "09-07-2021"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "accNumber": "0004",
+      "sortCode": "12-12-12",
+      "accType": "current account",
+      "balance": 210.56,
+      "transactions": [
+        {
+          "vendorName": "sergio",
+          "price": 1.5,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "10-07-2021"
+        },
+        {
+          "vendorName": "Amazon",
+          "price": 10.75,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "10-07-2021"
+        },
+        {
+          "vendorName": "nicolas maracora",
+          "price": 10.75,
+          "category": "payment",
+          "type": "ingoing",
+          "date": "10-07-2021"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userId": 4,
+      "accNumber": "0005",
+      "sortCode": "12-12-12",
+      "accType": "current account",
+      "balance": 200.95,
+      "transactions": [
+        {
+          "vendorName": "Rico",
+          "price": 1.5,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "10-07-2021"
+        },
+        {
+          "vendorName": "Amazon",
+          "price": 10.75,
+          "category": "groceries",
+          "type": "outgoing",
+          "date": "10-07-2021"
+        }
+      ]
+    }
+  ]
+}
