@@ -7,9 +7,9 @@ export type Contact = {
 	accountNumber: string;
 	sortCode: string;
 };
-type Transaction = {
+export type Transaction = {
 	vendorName: string;
-	price: number;
+	price: number ;
 	category: string;
 	type: string;
 	date: string;
@@ -57,8 +57,8 @@ type Store = {
 	setAccounts: (data: AccountType[]) => void;
 	selectedAccount: string;
 	setSelectedAccount: (account: string) => void;
-	// setOutgoingAccountBalance: SetBalanceFunction
-	// setIngoingAccountBalance: SetBalanceFunction
+	setOutgoingAccountBalance: SetBalanceFunction
+	setIngoingAccountBalance: SetBalanceFunction
 	currentAccount: AccountType | null;
 	setCurrentAccount: (account: AccountType) => void;
 };
@@ -88,12 +88,7 @@ const useStore = create<Store>((set, get) => ({
 	setAccounts: (data) => set({ accounts: data }),
 	selectedAccount: "",
 	setSelectedAccount: (account) => set({ selectedAccount: account }),
-	setOutgoingAccountBalance: (
-		accounts: AccountType[],
-		prevBalance: number,
-		amount: number,
-		targetId: number
-	) =>
+	setOutgoingAccountBalance: (accounts, prevBalance, amount, targetId) =>
 		set({
 			accounts: accounts.map((account: AccountType) => {
 				if (account.id === targetId) {
@@ -105,12 +100,7 @@ const useStore = create<Store>((set, get) => ({
 				return account;
 			}),
 		}),
-	setIngoingAccountBalance: (
-		accounts: AccountType[],
-		prevBalance: number,
-		amount: number,
-		targetId: number
-	) =>
+	setIngoingAccountBalance: (accounts, prevBalance, amount, targetId) =>
 		set({
 			accounts: accounts.map((account) => {
 				if (account.id === targetId) {

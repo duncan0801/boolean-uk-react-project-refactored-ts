@@ -2,12 +2,12 @@ import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import useStore from "../../store";
 import "../../styles/MakeAPayment.css";
+//@ts-ignore
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import Select from "@material-ui/core/Select";
-import useFetchAccounts from "../../Hooks/useFetchAccounts.tsx";
 import { useParams } from "react-router-dom";
-import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
-import React from "react";
+import { Transaction } from "../../store";
+import { AccountType } from "../../store";
 
 function MakeAPayment() {
 	const history = useHistory();
@@ -30,14 +30,13 @@ function MakeAPayment() {
 		(state) => state.setActiveCustomerTransactions
 	);
 
-
 	function getTranscations() {
 		const targetAccount = accounts.find((account) => {
 			return account.id === Number(accountId);
 		});
 
-		console.log("targetAccount.transactions:", targetAccount.transactions);
-		setActiveCustomerTransactions(targetAccount.transactions);
+		if (targetAccount)
+			setActiveCustomerTransactions(targetAccount.transactions);
 	}
 	getTranscations();
 
@@ -54,8 +53,14 @@ function MakeAPayment() {
 		return cDate;
 	}
 
-	function postTransaction(firstName, lastName, amount, type, accId) {
-		const newTransaction = {
+	function postTransaction(
+		firstName: string,
+		lastName: string,
+		amount: number,
+		type: string,
+		accId: number
+	) {
+		const newTransaction: Transaction = {
 			vendorName: firstName + " " + lastName,
 			price: amount,
 			category: "payment",
@@ -68,10 +73,7 @@ function MakeAPayment() {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				transactions: [
-					...activeCustomerTransactions,
-					newTransaction,
-				],
+				transactions: [...activeCustomerTransactions, newTransaction],
 			}),
 		});
 		setActiveCustomerTransactions([
@@ -80,7 +82,7 @@ function MakeAPayment() {
 		]);
 	}
 
-	function handlePaymentSubmit(amount, targetAccNumber) {
+	function handlePaymentSubmit(amount: number, targetAccNumber: string) {
 		let numberAmount = Number(amount);
 
 		let ingoingAccount = accounts.find((account) => {
@@ -89,65 +91,76 @@ function MakeAPayment() {
 		let outgoingAccount = accounts.find((account) => {
 			return account.id === Number(selectedAccount);
 		});
-		let ingoingCustomer = users.find(
-			(user) => user.id === ingoingAccount.userId
-		);
-
-		fetch(`http://localhost:4000/accounts/${ingoingAccount.id}`, {
-			method: "PATCH",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				balance: ingoingAccount.balance + numberAmount,
-			}),
-		})
-			.then(() =>
-				postTransaction(
-					activeCustomer.firstName,
-					activeCustomer.lastName,
-					numberAmount,
-					"ingoing",
-					ingoingAccount.id
-				)
-			)
-			.then(
-                function () {
-                    return fetch(`http://localhost:4000/accounts/${accountId}`, {
-					method: "PATCH",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						balance: outgoingAccount.balance - numberAmount,
-					}),
-				})
-                }
-			)
-			.then((resp) => {
-				if (resp.ok) {
-					alert("success");
+		if (users) {
+			let ingoingCustomer = users.find((user) => {
+				if (ingoingAccount) {
+					return user.id === ingoingAccount.userId;
 				}
-				if (!resp.ok) {
-					alert("Fail");
-				}
-			})
-			.then(() => {
-				setOutgoingAccountBalance(
-					accounts,
-					outgoingAccount.balance,
-					numberAmount,
-					outgoingAccount.id
-				);
-				postTransaction(
-					ingoingCustomer.firstName,
-					ingoingCustomer.lastName,
-					numberAmount,
-					"outgoing",
-					accountId
-				);
-				history.push("/home");
 			});
+		}
+		if (ingoingAccount && activeCustomer) {
+			fetch(`http://localhost:4000/accounts/${ingoingAccount.id}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					balance: ingoingAccount.balance + numberAmount,
+				}),
+			})
+				.then(() =>
+					postTransaction(
+						activeCustomer.firstName,
+						activeCustomer.lastName,
+						numberAmount,
+						"ingoing",
+						ingoingAccount ? ingoingAccount.id : NaN
+					)
+				)
+				.then(function () {
+					if (outgoingAccount) {
+						return fetch(
+							`http://localhost:4000/accounts/${accountId}`,
+							{
+								method: "PATCH",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({
+									balance:
+										outgoingAccount.balance - numberAmount,
+								}),
+							}
+						);
+					}
+				})
+				.then((resp) => {
+					if (resp) {
+						if (resp.ok) {
+							alert("success");
+						}
+						if (!resp.ok) {
+							alert("Fail");
+						}
+					}
+				})
+				.then(() => {
+					setOutgoingAccountBalance(
+						accounts,
+						outgoingAccount.balance,
+						numberAmount,
+						outgoingAccount.id
+					);
+					postTransaction(
+						ingoingCustomer.firstName,
+						ingoingCustomer.lastName,
+						numberAmount,
+						"outgoing",
+						accountId
+					);
+					history.push("/home");
+				});
+		}
 	}
 	return (
 		<section>
